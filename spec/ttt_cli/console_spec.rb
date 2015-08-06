@@ -3,9 +3,9 @@ require 'io/console'
 
 describe TttCli::ConsoleShell do
   let(:console) { mock_console }
-  let(:board) { TicTacToe::Core::Board.empty_board }
+  let(:board) { TicTacToeGS::Core::Board.empty_board }
   let(:game) { mock_game }
-  let(:console_shell) { TicTacToe::Console::ConsoleShell.new(console, game) }
+  let(:console_shell) { TttCli::ConsoleShell.new(console, game) }
 
   def mock_console
     instance_double('IO').tap do |console|
@@ -17,7 +17,7 @@ describe TttCli::ConsoleShell do
   end
 
   def mock_game
-    TicTacToe::Core::Game.new_game.tap do |game|
+    TicTacToeGS::Core::Game.new_game.tap do |game|
       allow(game).to receive(:board).and_return(board)
       allow(game).to receive(:current_mark).and_call_original
       allow(game).to receive(:current_mark=).and_call_original
