@@ -1,13 +1,12 @@
-require 'tic_tac_toe/core/game'
-require 'tic_tac_toe/core/player'
+require 'tic_tac_toe_gs'
 
 module TttCli
 
-  class ConsoleShell < TicTacToe::Core::Player
+  class ConsoleShell < TicTacToeGS::Core::Player
     attr_reader :game
 
     def self.new_shell(console)
-      game = TicTacToe::Core::Game.new_game
+      game = TicTacToeGS::Core::Game.new_game
       shell = self.new(console, game)
       return shell
     end
@@ -92,9 +91,9 @@ module TttCli
         when "h", "human"
           return self
         when "r", "random"
-          return TicTacToe::Core::Players::Random.new(Random.new)
+          return TicTacToeGS::Core::Players::Random.new(Random.new)
         when "a", "ai"
-          return TicTacToe::Core::Players::Minimax.new
+          return TicTacToeGS::Core::Players::Minimax.new
         end
       end
     end
